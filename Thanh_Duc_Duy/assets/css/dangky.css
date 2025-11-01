@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #222;
+    background-color: #f8f8f8;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+input,
+button,
+textarea {
+    font-family: inherit;
+    outline: none;
+}
+
+/* Utility Classes */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 15px;
+    background-color: #fff;
+    box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+}
+
+.main {
+    padding: 150px 0;
+}
+
+.form-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 33px;
+    text-align: center;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #222;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 6px 30px 6px 40px;
+    border: none;
+    border-bottom: 1px solid #999;
+    font-size: inherit;
+    color: inherit;
+}
+
+.form-group input:focus {
+    border-bottom-color: #222;
+}
+
+.form-group input:focus::placeholder {
+    color: #222;
+}
+
+.form-submit {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #6dabe4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-submit:hover {
+    background-color: #4292dc;
+}
+
+.signup-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 75px 0;
+}
+
+.signup-form,
+.signup-image {
+    width: 50%;
+}
+
+.signup-form {
+    padding-left: 34px;
+    padding-right: 75px;
+}
+
+.signup-image {
+    margin: 0 55px;
+    text-align: center;
+}
+
+.signup-image img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 50px;
+}
+
+.signup-image-link {
+    font-size: 14px;
+    display: block;
+    text-align: center;
+    margin-top: 20px; /* Thêm khoảng cách từ phần form */
+    color: #6dabe4; /* Màu chữ */
+    font-weight: bold; /* Làm đậm chữ */
+    transition: color 0.3s; /* Tạo hiệu ứng chuyển đổi màu khi di chuột */
+}
+
+.signup-image-link:hover {
+    color: #4292dc; /* Thay đổi màu chữ khi di chuột qua */
+}
+
+
+/* General styling for the form group */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* Hide the default checkbox */
+.agree-term {
+    display: none;
+}
+
+/* Styling for the custom checkbox container */
+.label-agree-term {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Outer square of the custom checkbox */
+.custom-checkbox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    margin-right: 10px;
+    position: relative;
+}
+
+/* Inner checkmark of the custom checkbox (hidden by default) */
+.checkbox-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: #4CAF50;
+    border-radius: 2px;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Display the inner checkmark when the checkbox is checked */
+.agree-term:checked + .label-agree-term .custom-checkbox .checkbox-inner {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Styling for the link */
+.term-service {
+    color: #007bff;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.term-service:hover {
+    text-decoration: underline;
+}
+
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.toggle-password i {
+    font-size: 16px;
+    color: #999;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .signup-content {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .signup-form,
+    .signup-image {
+        width: 100%;
+    }
+
+    .signup-form {
+        padding: 0 30px;
+        margin-bottom: 50px;
+    }
+
+    .signup-image {
+        margin: 0;
+        order: 2;
+    }
+}
+
+@media (max-width: 400px) {
+    .label-agree-term {
+        display: block;
+        margin-top: 10px;
+    }
+}

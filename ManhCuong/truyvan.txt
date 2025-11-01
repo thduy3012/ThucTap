@@ -1,0 +1,189 @@
+1. Nhân viên đăng nhập vào xem thông tin tất cả khách hàng
+
+SELECT 
+    ID_KhachHang, 
+    Ten, 
+    SoDienThoai, 
+    DiaChi, 
+    Username 
+FROM 
+    KhachHang;
+
+
+2. Khách hàng đăng nhập vào xem các dịch vụ đã đăng ký
+
+SELECT 
+    KhachHang.ID_KhachHang,
+    KhachHang.Ten AS TenKhachHang,
+    DichVu.TenDichVu,
+    GoiDichVu.TenGoiDichVu,
+    ThongTinBanHang.NgayDangKy,
+    ThongTinBanHang.SoLuong
+FROM 
+    KhachHang
+JOIN 
+    ThongTinBanHang ON KhachHang.ID_KhachHang = ThongTinBanHang.ID_KhachHang
+JOIN 
+    GoiDichVu ON ThongTinBanHang.ID_GoiDichVu = GoiDichVu.ID_GoiDichVu
+JOIN 
+    DichVu ON GoiDichVu.ID_DichVu = DichVu.ID_DichVu
+WHERE 
+    KhachHang.Username = 'username_cua_khach_hang' 
+    AND KhachHang.Password = 'password_cua_khach_hang';
+
+
+3. Hiển thị top 10 nhân viên bán hàng nhiều nhất (số lượng dịch vụ được bán)
+
+SELECT 
+    NhanVien.ID_NhanVien,
+    NhanVien.TenNhanVien,
+    SUM(ThongTinBanHang.SoLuong) AS TongSoDichVuDaBan
+FROM 
+    NhanVien
+JOIN 
+    TTNhanVienBanHang ON NhanVien.ID_NhanVien = TTNhanVienBanHang.ID_NhanVien
+JOIN 
+    ThongTinBanHang ON TTNhanVienBanHang.ID_TTNVBH = ThongTinBanHang.ID_TTNVBH
+GROUP BY 
+    NhanVien.ID_NhanVien, NhanVien.TenNhanVien
+ORDER BY 
+    TongSoDichVuDaBan DESC
+LIMIT 10;
+
+
+4. Hiển thị top 10 khách hàng sử dụng nhiều dịch vụ nhất
+
+SELECT 
+    KhachHang.ID_KhachHang,
+    KhachHang.Ten,
+    COUNT(ThongTinBanHang.ID_GoiDichVu) AS SoLuongDichVuDaDangKy
+FROM 
+    KhachHang
+JOIN 
+    ThongTinBanHang ON KhachHang.ID_KhachHang = ThongTinBanHang.ID_KhachHang
+GROUP BY 
+    KhachHang.ID_KhachHang, KhachHang.Ten
+ORDER BY 
+    SoLuongDichVuDaDangKy DESC
+LIMIT 10;
+
+
+5. Hiển thị số lượng các dịch vụ được bán nhiều nhất
+
+SELECT 
+    DichVu.TenDichVu,
+    COUNT(ThongTinBanHang.ID_GoiDichVu) AS SoLuongDichVuDuocBan
+FROM 
+    DichVu
+JOIN 
+    GoiDichVu ON DichVu.ID_DichVu = GoiDichVu.ID_DichVu
+JOIN 
+    ThongTinBanHang ON GoiDichVu.ID_GoiDichVu = ThongTinBanHang.ID_GoiDichVu
+GROUP BY 
+    DichVu.TenDichVu
+ORDER BY 
+    SoLuongDichVuDuocBan DESC;
+
+
+6. Hiển thị doanh thu theo từng dịch vụ
+
+
+SELECT 
+    DichVu.TenDichVu,
+    SUM(DoanhThu.SoTien) AS TongDoanhThu
+FROM 
+    DichVu
+JOIN 
+    GoiDichVu ON DichVu.ID_DichVu = GoiDichVu.ID_DichVu
+JOIN 
+    ThongTinBanHang ON GoiDichVu.ID_GoiDichVu = ThongTinBanHang.ID_GoiDichVu
+JOIN 
+    DoanhThu ON ThongTinBanHang.ID_ThongTinBanHang = DoanhThu.ID_ThongTinBanHang
+GROUP BY 
+    DichVu.TenDichVu
+ORDER BY 
+    TongDoanhThu DESC;
+
+
+
+1. Doanh thu theo tuần
+
+SELECT 
+    DichVu.TenDichVu,
+    YEAR(DoanhThu.ThoiGian) AS Nam,
+    WEEK(DoanhThu.ThoiGian, 1) AS Tuan,
+    SUM(DoanhThu.SoTien) AS TongDoanhThu
+FROM 
+    DichVu
+JOIN 
+    GoiDichVu ON DichVu.ID_DichVu = GoiDichVu.ID_DichVu
+JOIN 
+    ThongTinBanHang ON GoiDichVu.ID_GoiDichVu = ThongTinBanHang.ID_GoiDichVu
+JOIN 
+    DoanhThu ON ThongTinBanHang.ID_ThongTinBanHang = DoanhThu.ID_ThongTinBanHang
+GROUP BY 
+    DichVu.TenDichVu, Nam, Tuan
+ORDER BY 
+    Nam DESC, Tuan DESC, DichVu.TenDichVu;
+
+
+2. Doanh thu theo tháng
+
+SELECT 
+    DichVu.TenDichVu,
+    YEAR(DoanhThu.ThoiGian) AS Nam,
+    MONTH(DoanhThu.ThoiGian) AS Thang,
+    SUM(DoanhThu.SoTien) AS TongDoanhThu
+FROM 
+    DichVu
+JOIN 
+    GoiDichVu ON DichVu.ID_DichVu = GoiDichVu.ID_DichVu
+JOIN 
+    ThongTinBanHang ON GoiDichVu.ID_GoiDichVu = ThongTinBanHang.ID_GoiDichVu
+JOIN 
+    DoanhThu ON ThongTinBanHang.ID_ThongTinBanHang = DoanhThu.ID_ThongTinBanHang
+GROUP BY 
+    DichVu.TenDichVu, Nam, Thang
+ORDER BY 
+    Nam DESC, Thang DESC, DichVu.TenDichVu;
+
+
+3. Doanh thu theo quý
+
+SELECT 
+    DichVu.TenDichVu,
+    YEAR(DoanhThu.ThoiGian) AS Nam,
+    QUARTER(DoanhThu.ThoiGian) AS Quy,
+    SUM(DoanhThu.SoTien) AS TongDoanhThu
+FROM 
+    DichVu
+JOIN 
+    GoiDichVu ON DichVu.ID_DichVu = GoiDichVu.ID_DichVu
+JOIN 
+    ThongTinBanHang ON GoiDichVu.ID_GoiDichVu = ThongTinBanHang.ID_GoiDichVu
+JOIN 
+    DoanhThu ON ThongTinBanHang.ID_ThongTinBanHang = DoanhThu.ID_ThongTinBanHang
+GROUP BY 
+    DichVu.TenDichVu, Nam, Quy
+ORDER BY 
+    Nam DESC, Quy DESC, DichVu.TenDichVu;
+
+
+4. Doanh thu theo năm
+
+SELECT 
+    DichVu.TenDichVu,
+    YEAR(DoanhThu.ThoiGian) AS Nam,
+    SUM(DoanhThu.SoTien) AS TongDoanhThu
+FROM 
+    DichVu
+JOIN 
+    GoiDichVu ON DichVu.ID_DichVu = GoiDichVu.ID_DichVu
+JOIN 
+    ThongTinBanHang ON GoiDichVu.ID_GoiDichVu = ThongTinBanHang.ID_GoiDichVu
+JOIN 
+    DoanhThu ON ThongTinBanHang.ID_ThongTinBanHang = DoanhThu.ID_ThongTinBanHang
+GROUP BY 
+    DichVu.TenDichVu, Nam
+ORDER BY 
+    Nam DESC, DichVu.TenDichVu;

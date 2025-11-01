@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #222;
+    background-color: #f8f8f8;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+input,
+button,
+textarea {
+    font-family: inherit;
+    outline: none;
+}
+
+/* Utility Classes */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 15px;
+    background-color: #fff;
+    box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+}
+
+.main {
+    padding: 150px 0;
+}
+
+.form-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 33px;
+    text-align: center;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group .icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #999;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 6px 30px 6px 40px;
+    border: none;
+    border-bottom: 1px solid #999;
+    font-size: inherit;
+    color: inherit;
+}
+
+.form-group input:focus {
+    border-bottom-color: #222;
+}
+
+.form-group input:focus::placeholder {
+    color: #222;
+}
+
+.form-submit {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #6dabe4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-submit:hover {
+    background-color: #4292dc;
+}
+
+.signin-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 75px 0;
+}
+
+.signin-form,
+.signin-image {
+    width: 50%;
+}
+
+.signin-form {
+    padding-left: 34px;
+    padding-right: 75px;
+}
+
+.signin-image {
+    margin: 0 55px;
+    text-align: center;
+}
+
+.signin-image img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 50px;
+}
+
+.signup-image-link {
+    font-size: 14px;
+    display: block;
+    text-align: center;
+    margin-top: 20px; /* Thêm khoảng cách từ phần form */
+    color: #6dabe4; /* Màu chữ */
+    font-weight: bold; /* Làm đậm chữ */
+    transition: color 0.3s; /* Tạo hiệu ứng chuyển đổi màu khi di chuột */
+}
+
+.signup-image-link:hover {
+    color: #4292dc; /* Thay đổi màu chữ khi di chuột qua */
+}
+
+
+/* General styling for the form group */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Adjusted margin bottom */
+}
+
+.form-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+.form-group .label-agree-term {
+    display: inline-block;
+    margin-left: 17px;
+    font-size: 14px;
+    color: #777;
+}
+
+.form-group .label-agree-term a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.form-group .label-agree-term a:hover {
+    text-decoration: underline;
+}
+
+/* Styling for the link */
+.term-service {
+    color: #007bff;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.term-service:hover {
+    text-decoration: underline;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.toggle-password i {
+    font-size: 16px;
+    color: #999;
+}
+
+.social-login {
+    text-align: center;
+}
+
+.social-label {
+    display: block;
+    font-size: 14px;
+    color: #222;
+    margin-bottom: 15px;
+}
+
+.socials {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.socials li {
+    margin: 0 10px;
+}
+
+.socials li a {
+    font-size: 18px;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.socials li a:hover {
+    color: #6dabe4;
+}
+
+/* màu sắc cố định cho từng icon */
+.socials .zmdi-facebook {
+    color: #3b5998;
+}
+
+.socials .zmdi-twitter {
+    color: #1DA1F2;
+}
+
+.socials .zmdi-google {
+    color: #DB4437; /* Màu Google mặc định */
+}
+
+.socials .zmdi-google:hover {
+    color: #4285F4; /* Màu Google khi hover */
+}
+
+.socials .zmdi-google:active {
+    color: #0b72b9; /* Màu Google khi active */
+}
+
+.customer-account {
+    display: inline-block;
+    background-color: #d3d4e7;
+    color: #381f1b;
+    padding: 10px 20px;
+    border-radius: 60px;
+    font-weight: bold;
+    text-decoration: none; /* Đảm bảo không có gạch chân */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.customer-account:hover {
+    background-color: #a3a6d2; /* Hover background color */
+    color: #fff; /* Hover text color */
+    text-decoration: none; /* Đảm bảo không có gạch chân khi hover */
+}
+
+.form-group {
+    display: flex; /* Sử dụng Flexbox để dễ dàng căn giữa */
+    justify-content: center; /* Căn giữa ngang */
+    align-items: center; /* Căn giữa dọc nếu cần */
+    margin: 20px 0; /* Tạo khoảng cách trên và dưới */
+}
+
+.btn {
+    background-color: #659dda; /* Màu nền */
+    color: #fff; /* Màu chữ */
+    padding: 10px 20px; /* Khoảng đệm bên trong */
+    border: none; /* Bỏ đường viền */
+    border-radius: 5px; /* Bo góc nút */
+    font-size: 15px; /* Kích thước chữ */
+    font-weight: bold; /* Chữ đậm */
+    cursor: pointer; /* Thay đổi con trỏ khi hover */
+    transition: background-color 0.3s, transform 0.3s; /* Hiệu ứng chuyển đổi */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Màu nền khi hover */
+    transform: scale(1.05); /* Phóng to nhẹ khi hover */
+}
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .signin-content {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .signin-form,
+    .signin-image {
+        width: 100%;
+    }
+
+    .signin-form {
+        padding: 0 30px;
+        margin-bottom: 50px;
+    }
+
+    .signin-image {
+        margin: 0;
+        order: 2;
+    }
+}
+
+@media (max-width: 400px) {
+    .label-agree-term {
+        display: block;
+        margin-top: 10px;
+    }
+}
